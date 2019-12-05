@@ -77,7 +77,7 @@ function parseResults() {
       
       if(mostrecentword.indexOf("fox")!==-1) {fox(220,-50);}
 
-      if(mostrecentword.indexOf("lion")!==-1) {scale(.6); lion(-350,60); }
+      if(mostrecentword.indexOf("lion")!==-1) {scale(.8); lion(-650,160); }
 
       if(mostrecentword.indexOf("dog")!==-1) { scale(.7); dog(1040,560); }
 
