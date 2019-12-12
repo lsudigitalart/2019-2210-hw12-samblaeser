@@ -1,23 +1,28 @@
 var myRec;
 
 var time1 = 0;
-var time2 = 4500;
-var time3 = 15000;
-var time3H = 15500;
-var time4 = 24500;
-var time5 = 31000;
-var time6 = 36000;
-var time7 = 41000;
-var time8 = 46000;
-var time9 = 50000;
-var time10 = 54000;
-var time11 = 59000;
+var time2 = 3000;
+var time3 = 10000;
+var time3H = 10500;
+var time4 = 17000;
+var time5 = 22000;
+var time6 = 27000;
+var time7 = 31000;
+var time8 = 36000;
+var time9 = 42000;
+var time10 = 48000;
+var time11 = 56000;
+var time12 = 62000;
 
+var linger = false;
 
+var mostrecentword;
 
+var currPhrase;
 
-var phrases = ["happy as a _____ in mud","busy as a ___(sound?)","meek as a ___","quiet as a ___","sick as a ___","sly as a ___","night ___","jump the ___","Who's the king of the jungle?","boo! (who says that?)"];
-//var index = 0; 
+var x = 100;
+
+var phrases = ["", "name! that! animal!", "happy as a _____ in mud","busy as a ___(sound?)","meek as a ___","quiet as a ___","sick as a ___","sly as a ___","night ___ (who?)","jump the ___","Who's the king of the jungle?","boo! (who says that?)","Did you name them all?"];
 
 var phraseHelp = ["think of their sound!", "who?"];
 
@@ -25,219 +30,262 @@ function preload(){
    can = loadFont("can.ttf");
 }
 
-
-
 function setup() {
-   createCanvas(1000,800);
-   background(125,130,100,80);
-   myRec = new p5.SpeechRec('en-US',parseResults);
-     myRec.continuous = true;
-   myRec.interimResults = true;
-myRec.start();
-  angleMode(DEGREES);
+    createCanvas(1000,800);
+    background(125,130,100,80);
+    myRec = new p5.SpeechRec('en-US',parseResults);
+    myRec.continuous = true;
+    myRec.interimResults = true;
+    myRec.start();
+    angleMode(DEGREES);
+    textAlign(CENTER);
 
-  textAlign(CENTER);
-     
-  var phrase = random(phrases);
-textSize(70);
-fill(111,81,65);
-textFont(can);
-text(phrase,width/2,height/2);
-
-//if(phrase == phrases[(2)]) {
-//     textSize(60); text(phraseHelp[(0)],width/2,height/4);
-// }
-// if(phrase == phrases[(7)]) {
-//     textSize(60); text(phraseHelp[(1)],width/2,height/4);
-// }
+    currPhrase = phrases[0];
 
 }
       
 function parseResults() {
- 
         
-        var mostrecentword = myRec.resultString.split(' ').pop();
+    mostrecentword = myRec.resultString.split(' ').pop();
 
-   
-        console.log(mostrecentword);
- 
-     
-		
-   
-       
-       
-     if(mostrecentword.indexOf("pig")!==-1) {pig(150,-50);}
-
-       
-     
-      if(mostrecentword.indexOf("buzz")!==-1) {bee(250,-50);}
-            
-      
-      if(mostrecentword.indexOf("lamb")!==-1) {scale(.6); lamb(1150,550);  }
-      
-      if(mostrecentword.indexOf("fox")!==-1) {fox(220,-50);}
-
-      if(mostrecentword.indexOf("lion")!==-1) {scale(.8); lion(-650,160); }
-
-      if(mostrecentword.indexOf("dog")!==-1) { scale(.7); dog(1040,560); }
-
-      if(mostrecentword.indexOf("owl")!==-1) {owl(640,370); }
-      
-      if(mostrecentword.indexOf("shark")!==-1) {scale(.5); shark(1460,560);  }
-
-      if(mostrecentword.indexOf("mouse")!==-1) { mouse(460,60); }
-
-
-           //if(mostrecentword.indexOf("cat")!==-1) {cat(10,10); }
-        if(mostrecentword.indexOf("ghost")!==-1) { scale(random(.8,4))
-            ghost(random(660),random(600));
-            ghost(random(160),random(400));
-            ghost(random(1060),random(200));}
+    console.log(mostrecentword);
   
-  
-  
-  
-  
-   }
+}
    
  
-   function draw() {
+function draw() {
     //print(millis());
+    background(125,130,100,80);    
+
     
+    text(currPhrase, width/2, height/2); 
     
-     
-//       var currentTime = millis();
-      
-     
-//       if (currentTime >= time1){
-//        fill(0);
-//           textSize(70);
-//          textFont(can);
-//           textAlign(CENTER);
-//           text(phrases[(0)],width/2, height/8);
-         
-//       }
-       
-      
-             
-//       //pig
-//           push();
-//       if (currentTime >= time2) {
-//            fill(127,90,53);
-//           textSize(70);
-//            text(phrases[(1)],width/2,height/2);
-//           }  
-//       if (currentTime >= time2+10000) {
-//          clear();
-//          }
-//          pop();
-      
-  
-//        push();
-//   //bee
-//           if (currentTime >= time3) {
-//       background(125,130,100,80);
-//          textSize(70);
-//          text(phrases[(2)],width/2,height/2);
-//          textSize(60);
-//          text(phraseHelp[(0)],width/2,550);
-//       }   if (currentTime >= time3+5000) {
-//           clear();
-//           }
-//      pop();
-  
-//      push();
-//   //lamb
-//       if (currentTime >= time4) {
-//       background(125,130,100,80);
-//           textSize(70);
-//           text(phrases[(3)],width/2,height/2);}
-//           if (currentTime >= time4+6000) {
-//               clear();
-//               }
-//   pop();
-  
-//   push();
-//   //mouse
-//   if (currentTime >= time5) {
-//       background(125,130,100,80);
-//       textSize(70);
-//       text(phrases[(4)],width/2,height/2);
-//   }  
-//   if (currentTime >= time5+5000) {
-//       clear();
-//       }
-//   pop();
-//   push();
-//   //dog
-//   if (currentTime >= time6) {
-//       background(125,130,100,80);
-//       textSize(70);
-//       text(phrases[(5)],width/2,height/2);
-//   } 
-//   if (currentTime >= time6+4000) {
-//       clear();
-//       }
-//   pop();
-//   push();
-//   //fox
-//   if (currentTime >= time7) {
-//       background(125,130,100,80);
-//       textSize(70);
-//       text(phrases[(6)],width/2,height/2);
-//   } 
-//   if (currentTime >= time7+4000) {
-//       clear();
-//       }
-//       pop();
-  
-//       push();
-//   //owl
-  
-//   if (currentTime >= time8) {
-//       background(125,130,100,80);
-//       textSize(70);
-//       text(phrases[(7)],width/2,height/2);
-//       textSize(60);
-//       text(phraseHelp[(1)],width/2,550);}
-//   if (currentTime >= time8+4000) {
-//       clear();
-//       }
-//       pop();
-//       push();
-//   //shark
-//   if (currentTime >= time9) {
-//       background(125,130,100,80);
-//       textSize(70);
-//       text(phrases[(8)],width/2,height/2);
-//   } 
-//   if (currentTime >= time9+3000) {
-//       clear();
-//       }
-//   pop();
-  
-//   push();
-//   //lion
-//   if (currentTime >= time10) {
-//       background(125,130,100,80);
-//       textSize(70);
-//       text(phrases[(9)],width/2,height/2);
-//   } 
-//   if (currentTime >= time10+3000) {
-//       clear();
-//       }
-//       pop();
-  
-//       push();
-//   if (currentTime >= time10+5000) {
-//       background(125,130,100,80);
-//       text("did you name them all?",width/2,height/2);
-//           }
-//   pop();
-  
-  
-  
-  }
+    var currentTime = millis();
+
+    if (currentTime > time1 && currentTime < time2){
+        fill(0);
+        textSize(70);
+        textFont(can);
+        textAlign(CENTER);
+        currPhrase = phrases[1];
+    }
+
+    //pig
+    if (currentTime > time2 && currentTime < time3) {
+        fill(127,90,53);
+        textSize(70);
+        currPhrase = phrases[2];
+        if(mostrecentword == "pig" || mostrecentword == "Pig") {
+            linger = true;
+        }
+
+        if(linger == true) {
+            pig(150,-50);
+        }
+    }  
+
+    if (currentTime > time2+7000) {
+        linger = false;
+        currPhrase = phrases[0];
+    }
+
+    //bee
+    if (currentTime > time3 && currentTime < time4) {
+        background(125,130,100,80);
+        textSize(70);
+        fill(0);
+        currPhrase = phrases[3];
+        if(mostrecentword == "buzz" || mostrecentword == "Buzz") {
+            linger = true;
+        }
+
+        if(linger == true) {
+           scale(.5);
+            bee(x,-30);
+            x += 8;
+        }
+    }   
+    
+    if (currentTime > time3+10000) {
+        linger = false;
+        currPhrase = phrases[0];
+    }
+
+
+    //lamb
+    if (currentTime > time4 && currentTime < time5) {
+        background(125,130,100,80);
+        fill(255);
+        textSize(70);
+        currPhrase = phrases[4];
+        if(mostrecentword == "lamb" || mostrecentword == "Lamb") {
+            linger = true;
+        }
+
+
+        if(linger == true) {
+            scale(.6); 
+            lamb(1150,550);
+        }
+    }
+          
+    if (currentTime > time4+5000) {
+        linger = false;
+        currPhrase = phrases[0];
+    }
+
+    //mouse
+    if (currentTime > time5 && currentTime < time6) {
+        background(125,130,100,80);
+        fill(94,95,65);
+        textSize(70);
+        currPhrase = phrases[5];
+        if(mostrecentword == "mouse" || mostrecentword == "Mouse") {
+            linger = true;
+        }
+
+
+    if(linger == true) {
+        mouse(460,60);
+    }
+    }
+        
+    if (currentTime > time5+5000) {
+        linger = false;
+        currPhrase = phrases[0];
+    }
+    
+    //dog
+    if (currentTime > time6 && currentTime < time7) {
+        background(125,130,100,80);
+        fill(70,111,52);
+        textSize(70);
+        currPhrase = phrases[6];
+        if(mostrecentword == "dog" || mostrecentword == "Dog") {
+            linger = true;
+        }
+
+
+    if(linger == true) {
+        scale(.7); dog(970,560); 
+    }
+    }
+        
+    if (currentTime > time6+4000) {
+        linger = false;
+        currPhrase = phrases[0];
+    }
+    
+    //fox
+    if (currentTime > time7 && currentTime < time8) {
+        background(125,130,100,80);
+        fill(179,109,25);
+        textSize(70);
+        currPhrase = phrases[7];
+        if(mostrecentword == "fox" || mostrecentword == "Fox") {
+            linger = true;
+        }
+
+
+    if(linger == true) {
+        fox(220,-50); 
+    }
+    }
+        
+    if (currentTime > time7+5000) {
+        linger = false;
+        currPhrase = phrases[0];
+    }
+
+    //owl
+    if (currentTime > time8 && currentTime < time9) {
+        fill(70,111,52);
+        textSize(70);
+        currPhrase = phrases[8];
+        if(mostrecentword == "owl" || mostrecentword == "Owl") {
+            linger = true;
+        }
+
+        if(linger == true) {
+            owl(500,370);
+        }
+    }  
+
+    if (currentTime > time8+6000) {
+        linger = false;
+        currPhrase = phrases[0];
+    }
+    
+    //shark
+    if (currentTime > time9 && currentTime < time10) {
+        fill(70,111,52);
+        textSize(70);
+        currPhrase = phrases[9];
+        if(mostrecentword == "shark" || mostrecentword == "Shark") {
+            linger = true;
+        }
+
+        if(linger == true) {
+            scale(.5); shark(1460,560);
+        }
+    }  
+
+    if (currentTime > time9+6000) {
+        linger = false;
+        currPhrase = phrases[0];
+    }
+
+    //lion
+    if (currentTime > time10 && currentTime < time11) {
+        fill(70,111,52);
+        textSize(70);
+        currPhrase = phrases[10];
+        if(mostrecentword == "lion" || mostrecentword == "Lion") {
+            linger = true;
+        }
+
+        if(linger == true) {
+            scale(.8); lion(-650,160);
+        }
+    }  
+
+    if (currentTime > time10+8000) {
+        linger = false;
+        currPhrase = phrases[0];
+    }
+   
+    //ghost
+    if (currentTime > time11 && currentTime < time12) {
+        fill(70,111,52);
+        textSize(70);
+        currPhrase = phrases[11];
+        if(mostrecentword == "ghost" || mostrecentword == "Ghost") {
+            linger = true;
+        }
+
+        if(linger == true) {
+            {
+                 scale(random(.8,4))
+                     ghost(random(660),random(600));
+                     ghost(random(160),random(400));
+                     ghost(random(1060),random(200));
+                 }
+    }  
+}
+
+    if (currentTime > time11+3000) {
+        linger = false;
+        currPhrase = phrases[0];
+    
+    }
+
+    if (currentTime > time11+8000) {
+        linger = false;
+        currPhrase = phrases[12];
+    
+    }
+
+}
    
 
    function lamb(x,y){
